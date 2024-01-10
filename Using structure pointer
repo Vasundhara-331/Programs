@@ -1,0 +1,18 @@
+# include <stdio.h>
+struct structp
+{
+     int n;
+     float num;
+}s;
+int main()
+{
+    struct structp *ptr;
+    ptr = &s;
+    printf("Enter integer value: ");
+    scanf("%d",&ptr -> n);
+    printf("\nEnter float value: ");
+    scanf("%f",&ptr -> num);
+    printf("\nEntered integer is: %d",ptr -> n);
+    printf("\nEntered float is: %f",ptr -> num);
+    return 0;
+}
