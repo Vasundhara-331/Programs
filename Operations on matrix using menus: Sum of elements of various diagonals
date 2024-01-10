@@ -1,0 +1,181 @@
+#include <stdio.h>
+int main() 
+{
+    int a[10][10];
+    int rows, cols, choice;
+    printf("Enter the number of rows and columns:");
+    printf("\nRows:");
+    scanf("%d",&rows);
+    printf("\nColumns:");
+    scanf("%d",&cols);
+
+    if (rows <= 0 || rows > 10) 
+    {
+        printf("Invalid input for rows.\n");
+    }
+    if (rows != cols) 
+    {
+        printf("Error: Not a square matrix!\n");
+    }
+
+    cols = rows; // Since we want a square matrix
+
+    // Input matrix elements
+    printf("Enter the matrix elements:\n");
+    for (int i = 0; i < rows; i++)
+    {
+        for (int j = 0; j < cols; j++) 
+        {
+            printf("Element [%d][%d]: ", i, j);
+            scanf("%d", &a[i][j]);
+        }
+    }
+
+    // Display matrix
+    printf("Matrix:\n");
+    for (int i = 0; i < rows; i++)
+    {
+        for (int j = 0; j < cols; j++)
+        {
+            printf("%d\t", a[i][j]);
+        }
+        printf("\n");
+    }
+
+    // Check if square matrix
+    
+  do
+  {
+    // Menu
+    printf("Menu:\n");
+    printf("1. Sum of Diagonals\n");
+    printf("2. Sum of Opposite Diagonals\n");
+    printf("3. Sum of Both Diagonals\n");
+    printf("4. Sum of Main Diagonal\n");
+
+    // User choice
+    printf("Enter your choice: ");
+    scanf("%d", &choice);
+
+    // Process choice
+    switch (choice) 
+    {
+        case 1:
+        {
+            int diagonalNumber;
+            int sum = 0;
+
+            // Input diagonal number
+            printf("Enter the diagonal number (0 for main diagonal, 1 for secondary diagonal: ");
+            scanf("%d", &diagonalNumber);
+             printf("Matrix:\n");
+            for (int i = 0; i < rows; i++)
+            {
+              for (int j = 0; j < cols; j++)
+              {
+            printf("%d\t", a[i][j]);
+              }
+        printf("\n");
+            }   
+            // Calculate sum of specified diagonal
+    if (diagonalNumber == 0)
+    {
+        for (int i = 0; i < rows; i++) 
+        {
+            sum += a[i][i];
+        }
+        printf("\nSum of main diagonal elements is: %d\n",sum);
+        break;
+    } 
+    
+    else if (diagonalNumber == 1)
+    {
+        for (int i = 0; i < rows; i++)
+        {
+            sum += a[i][rows - 1 - i];
+        }
+        printf("\nSum of secondary diagonal elements is: %d\n",sum);
+        break;
+    }
+    
+    else 
+    {
+        printf("Invalid diagonal number\n");
+            break;
+    }
+    }
+        case 2:
+        {
+            int sumOppositeDiagonals = 0;
+             printf("Matrix:\n");
+            for (int i = 0; i < rows; i++)
+            {
+              for (int j = 0; j < cols; j++)
+              {
+                printf("%d\t", a[i][j]);
+              }
+              printf("\n");
+            }
+
+            // Calculate sum of opposite diagonals
+            for (int i = 0; i < rows; i++) 
+            {
+                sumOppositeDiagonals += a[i][cols - 1 - i];
+            }
+
+            printf("Sum of Opposite Diagonals: %d\n", sumOppositeDiagonals);
+            break;
+        }
+        case 3: 
+        {
+            int sumBothDiagonals = 0;
+             printf("Matrix:\n");
+             for (int i = 0; i < rows; i++)
+             {
+               for (int j = 0; j < cols; j++)
+               {
+                 printf("%d\t", a[i][j]);
+               }
+               printf("\n");
+              }
+
+            // Calculate sum of both diagonals
+            for (int i = 0; i < rows; i++)
+            {
+                sumBothDiagonals += a[i][i] + a[i][cols - 1 - i];
+            }
+
+            printf("Sum of Both Diagonals: %d\n", sumBothDiagonals);
+            break;
+        }
+        case 4:
+        {
+            int sumMainDiagonal = 0;
+             printf("Matrix:\n");
+             for (int i = 0; i < rows; i++)
+             {
+               for (int j = 0; j < cols; j++)
+               {
+                 printf("%d\t", a[i][j]);
+               }
+               printf("\n");
+             }
+
+            // Calculate sum of main diagonal
+            for (int i = 0; i < rows; i++)
+            {
+                sumMainDiagonal += a[i][i];
+            }
+            printf("Sum of Main Diagonal: %d\n", sumMainDiagonal);
+            break;
+        }
+            default:
+            printf("Invalid choice!\n");
+    }
+    printf("Would you like to continue?\n");
+    printf("If YES, press 1, otherwise press 0\n");
+    scanf("%d",&choice);
+  }
+  while(choice==1);
+    return 0;
+}
