@@ -1,0 +1,18 @@
+# include <stdio.h>
+int swap(int m, int n);
+int main()
+{
+    int a=3, b=4;
+    printf("a nd b before swaping: %d and %d",a,b);
+    swap(a,b);
+    printf("\na and b after swapping: %d and %d",a,b);
+}
+int swap(int m, int n)
+{
+    int t;
+    printf("\nm and n before swapping: %d and %d",m,n);
+    t=m;
+    m=n;
+    n=t;
+    printf("\nm and n after swapping: %d and %d",m,n);
+}
