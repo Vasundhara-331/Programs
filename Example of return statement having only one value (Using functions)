@@ -1,0 +1,25 @@
+# include <stdio.h>
+int sum(int , int );
+int main()
+{
+    int a=10, b=2;
+    printf("Sum of a and b is %d",sum(a,b));
+    printf("\nDifference of a and b is %d",sum(a,b));
+    return 0;
+}
+int sum(int a, int b)
+{
+    int sum = a+b;
+    int diff = a-b;
+    return sum,diff;
+}
+
+/*
+SAMPLE OUTPUT:
+Sum of a and b is 8
+Difference of a and b is 8
+EXPLANATION:
+Since only one value can be returned using return statement, only one output is obtained.
+Comma (,) operator follows left to right associativity. Hence from left to right, diff is the operation that comes at the right end. 
+Hence answer of diff is returned to both print statements.
+*/
