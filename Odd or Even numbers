@@ -1,0 +1,36 @@
+# include <stdio.h>
+int main()
+{
+  FILE *fp1, *fp2, *fp3;
+  int a[50],i,j;
+  fp1=fopen("Number.txt","r");
+  fp2=fopen("Odd.txt","w+");
+  fp3=fopen("Even.txt","w+");
+    if(fp1==NULL)
+    {
+      printf("File not found!!");
+    }
+    else
+    {
+      while((fscanf(fp1,"%d",&a[j]))!=EOF)
+      {
+        j++;
+      }
+      for(i=0;i<j;i++)
+      {
+        if(a[i]==0)
+        {
+            fprintf(fp3, "%d\t",a[i]);
+        }
+        else if(a[i]%2==0)
+        {  
+          fprintf(fp3, "%d\t",a[i]);
+        }
+        else 
+        {
+          fprintf(fp2, "%d\t",a[i]);
+        }
+      }
+     }
+  return 0;
+}  

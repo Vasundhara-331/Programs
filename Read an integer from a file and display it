@@ -1,0 +1,32 @@
+# include <stdio.h>
+# include <stdlib.h>
+int main()
+{
+    FILE *fp;
+    int num;
+    fp=fopen("Integer.txt","r");
+    if(fp==NULL)
+    {
+        printf("File not found!");
+        
+    }
+    else
+    {
+        fscanf(fp,"%d",&num);
+        printf("Integer is: %d",num);
+        fclose(fp);
+    }
+    return 0;
+}
+
+/*
+Integer.txt
+1
+4
+-9
+8
+-17
+100
+Output:
+Integer is: 1
+*/
