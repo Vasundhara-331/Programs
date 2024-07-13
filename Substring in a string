@@ -1,0 +1,47 @@
+#include <stdio.h>
+#include <string.h>
+
+int main() 
+{
+    char s1[100]; 
+    char s2[50];
+
+    // Input string from the user
+    printf("Enter a string: ");
+    scanf("%[^\n]s", s1);
+    getchar();
+
+    // Substring to search
+    printf("Enter a substring: ");
+    scanf("%[^\n]s", s2);
+    getchar();
+
+    int inputLen = strlen(s1);
+    int subLen = strlen(s2);
+    int frequency = 0;
+
+    for (int i = 0; i <= inputLen - subLen; i++) 
+    {
+        int match = 1; // Assume a match initially
+
+        // Check if substring matches at position i
+        for (int j = 0; j < subLen; j++)
+        {
+            if (s1[i + j] != s2[j])
+            {
+                match = 0; // Not a match
+                break;
+            }
+        }
+
+        if (match) 
+        {
+            frequency++;
+        }
+    }
+
+    // Display the frequency of the substring
+    printf("Frequency of '%s' in is: %d\n", s2, frequency);
+
+    return 0;
+}

@@ -1,0 +1,34 @@
+# include <stdio.h>
+# include <math.h>
+int main()
+{
+    int n,copy,n1,d,sum=0,count=0;
+    printf("Enter a number: ");
+    scanf("%d",&n);
+    copy=n;
+    n1=n;
+    if(n<=0)
+    printf("\nEnter a positive number!");
+    else if(n<10)
+    printf("\nAll single digit numbers are angstrom numbers");
+    else
+    {
+    while(n>0)
+    {
+        d=n%10;
+        count++;
+        n=n/10;
+    }
+    while(n1>0)
+    {
+        d=n1%10;
+        sum=sum+pow(d,count);
+        n1=n1/10;
+    }
+    if(copy==sum)
+    printf("\nIt is an angstrom number");
+    else
+    printf("\nIt is not an angstrom number");
+    }
+return 0;    
+}

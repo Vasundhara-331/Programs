@@ -1,0 +1,38 @@
+#include <stdio.h>
+struct time 
+{
+    int h;
+    int m;
+    int sec;
+};
+
+int main() 
+{
+    struct time start,end,diff;
+
+    printf("Enter start time: hours, minutes and seconds: ");
+    scanf("%d %d %d", &start.h, &start.m, &start.sec);
+    printf("Enter stop time: hours, minutes and seconds: ");
+    scanf("%d %d %d", &end.h, &end.m, &end.sec);
+    if(end.sec>start.sec)
+    {
+        start.sec+=60;
+        start.m--;
+    }
+    diff.sec=start.sec-end.sec;
+    if(end.m>start.m)
+    {
+         start.m+=60;
+        start.h--;
+    }
+    diff.m=start.m-end.m;
+    if(end.h>start.h)
+    {
+        diff.h=end.h-start.h;
+    }
+    diff.h=start.h-end.h;
+    
+    printf("TIME DIFFERENCE: %d:%d:%d - %d:%d:%d = %d:%d:%d\n",start.h,start.m,start.sec,end.h,end.m,end.sec,diff.h,diff.m,diff.sec);
+    return 0;
+}
+
