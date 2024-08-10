@@ -1,0 +1,112 @@
+#include <stdio.h>
+
+void main() {
+    int a[100], b[100], i, j, ae[100], be[100], ac[100], bc[100];
+    int n1, n2, d, r[100], p[100], max_exp1 = 0, max_exp2 = 0;
+
+    // Input number of terms in the first polynomial
+    printf("No. of terms in 1st Polynomial: ");
+    scanf("%d", &n1);
+
+    // Input the coefficients and exponents of the first polynomial
+    printf("1st Polynomial:\n");
+    for (i = 0; i < n1; i++) {
+        printf("Enter coefficient: ");
+        scanf("%d", &ac[i]);
+        printf("Enter exponent: ");
+        scanf("%d", &ae[i]);
+        if (ae[i] > max_exp1) {
+            max_exp1 = ae[i];  // Determine the highest exponent
+        }
+    }
+
+    // Input number of terms in the second polynomial
+    printf("\nNo. of terms in 2nd Polynomial: ");
+    scanf("%d", &n2);
+
+    // Input the coefficients and exponents of the second polynomial
+    printf("2nd Polynomial:\n");
+    for (i = 0; i < n2; i++) {
+        printf("Enter coefficient: ");
+        scanf("%d", &bc[i]);
+        printf("Enter exponent: ");
+        scanf("%d", &be[i]);
+        if (be[i] > max_exp2) {
+            max_exp2 = be[i];  // Determine the highest exponent
+        }
+    }
+
+    // Set the degree of the resulting polynomial to the maximum of the two
+    d = max_exp1 > max_exp2 ? max_exp1 : max_exp2;
+
+    // Initialize arrays
+    for (i = 0; i <= d; i++) {
+        a[i] = 0;
+        b[i] = 0;
+    }
+
+    // Fill in the coefficients for the first polynomial
+    for (i = 0; i < n1; i++) {
+        a[ae[i]] = ac[i];
+    }
+
+    // Fill in the coefficients for the second polynomial
+    for (i = 0; i < n2; i++) {
+        b[be[i]] = bc[i];
+    }
+
+    // Initialize the product array
+    for (i = 0; i <= max_exp1 + max_exp2; i++) {
+        p[i] = 0;
+    }
+
+    // Perform polynomial multiplication
+    for (i = 0; i <= max_exp1; i++) {
+        for (j = 0; j <= max_exp2; j++) {
+            p[i + j] += a[i] * b[j];
+        }
+    }
+
+    // Perform polynomial addition
+    for (i = 0; i <= d; i++) {
+        r[i] = a[i] + b[i];
+    }
+
+    // Display the addition result
+    printf("\nAddition of the polynomials results in:\n");
+    int first_term = 1;  // Flag to handle the first term formatting
+    for (i = d; i >= 0; i--) {
+        if (r[i] != 0) {
+            if (first_term) {
+                printf("%dx^%d ", r[i], i);
+                first_term = 0;
+            } else {
+                if (r[i] > 0) {
+                    printf("+%dx^%d ", r[i], i);
+                } else {
+                    printf("%dx^%d ", r[i], i);
+                }
+            }
+        }
+    }
+    printf("\n");
+
+    // Display the multiplication result
+    printf("Multiplication of the polynomials results in:\n");
+    first_term = 1;  // Reset flag for multiplication result formatting
+    for (i = max_exp1 + max_exp2; i >= 0; i--) {
+        if (p[i] != 0) {
+            if (first_term) {
+                printf("%dx^%d ", p[i], i);
+                first_term = 0;
+            } else {
+                if (p[i] > 0) {
+                    printf("+%dx^%d ", p[i], i);
+                } else {
+                    printf("%dx^%d ", p[i], i);
+                }
+            }
+        }
+    }
+    printf("\n");
+}
