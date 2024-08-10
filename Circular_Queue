@@ -1,0 +1,94 @@
+#include <stdio.h>
+
+int front=-1,rear=-1;
+int isFull(int front, int rear,int n) {
+    return (front == (rear + 1) % n);
+}
+
+int isEmpty(int front) {
+    return (front == -1);
+}
+
+void enqueue(int value,int n,int queue[]){
+    if (isFull(front,rear,n)) {
+        printf("Queue is full. Cannot enqueue %d\n", value);
+        return;
+    }
+
+    if (isEmpty(front)) {
+        front = 0;
+    }
+    rear = (rear + 1) % n;
+    queue[rear] = value;
+    printf("Enqueued %d\n", value);
+}
+int dequeue(int queue[],int n) {
+    if (isEmpty(front)) {
+        printf("Queue is empty. Cannot dequeue.\n");
+        return -1;
+    }
+
+    int value = queue[front];
+    
+    if (front == rear) {
+        front = -1;
+        rear = -1;
+    } else {
+        front = (front + 1) % n;
+    }
+
+    return value;
+}
+void display(int queue[],int n) {
+    if (isEmpty(front)) {
+        printf("Queue is empty.\n");
+        return;
+    }
+
+    printf("Queue elements: ");
+    int i = front;
+    while (1) {
+        printf("%d ", queue[i]);
+        if (i == rear) {
+            break;
+        }
+        i = (i + 1) % n;
+    }
+    printf("\n");
+}
+
+int main()
+{
+    
+    int n,ch,value;
+    printf("No of elements:");
+    scanf("%d",&n);
+    int queue[n];
+    int ans=1;
+    while(ans==1){
+        printf("\n1. Enqueue\n2. Dequeue\n3. Display\n4. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &ch);
+        if(ch==1){
+            printf("Enter value to enqueue: ");
+            scanf("%d", &value);
+            enqueue(value,n,queue);
+        }
+        else if(ch==2){
+            value = dequeue(queue,n);
+            if (value != -1) {
+                printf("Dequeued %d\n", value);
+            }
+        }
+        else if(ch==3){
+            display(queue,n);
+        }
+        else if(ch==4){
+            break;
+        }
+        else{
+            printf("Invalid choice");
+        }
+    }
+    return 0;
+}
